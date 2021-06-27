@@ -2,6 +2,10 @@
 
 namespace WildarChallenge.Data.FormasGeometricas
 {
+    /// <summary>
+    /// Forma geometrica que representa un cuadrado equilatero
+    /// donde todos sus lados son iguales.
+    /// </summary>
     class FormaGeometricaTrianguloEquilatero : IFormaGeometrica
     {
         private readonly decimal _anchoLado;

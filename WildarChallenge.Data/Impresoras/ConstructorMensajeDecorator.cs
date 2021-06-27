@@ -2,11 +2,26 @@
 
 namespace WildarChallenge.Data.Impresoras
 {
+    /// <summary>
+    /// <para>
+    /// Decora un <see cref="IConstructorMensaje"/> con otro por defecto.
+    /// </para>
+    /// 
+    /// <para>
+    /// Este constructor utilizará el establecido como "fallback" cuando
+    /// el original retorne un string vacío.
+    /// </para>
+    /// </summary>
     class ConstructorMensajeDecorator : IConstructorMensaje
     {
         private readonly IConstructorMensaje _constructorMensaje;
         private readonly IConstructorMensaje _fallback;
 
+        /// <summary>
+        /// Construye un ConstructorMensajeDecorator.
+        /// </summary>
+        /// <param name="constructorMensaje">Constructor de mensajes original.</param>
+        /// <param name="fallback">Constructor de mensajes a utilizar como "fallback"</param>
         public ConstructorMensajeDecorator(IConstructorMensaje constructorMensaje, IConstructorMensaje fallback)
         {
             this._constructorMensaje = constructorMensaje;

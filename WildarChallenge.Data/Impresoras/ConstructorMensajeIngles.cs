@@ -2,6 +2,9 @@
 
 namespace WildarChallenge.Data.Impresoras
 {
+    /// <summary>
+    /// Constructor de mensajes para <see cref="FactoryConstructorMensaje.Idioma.INGLES"/>
+    /// </summary>
     class ConstructorMensajeIngles : IConstructorMensaje
     {
         public string Area() => "Area";

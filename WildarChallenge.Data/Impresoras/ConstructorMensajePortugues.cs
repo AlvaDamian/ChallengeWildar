@@ -1,9 +1,10 @@
-﻿using System;
-
-using WildarChallenge.Data.FormasGeometricas;
+﻿using WildarChallenge.Data.FormasGeometricas;
 
 namespace WildarChallenge.Data.Impresoras
 {
+    /// <summary>
+    /// Constructor de mensajes para <see cref="FactoryConstructorMensaje.Idioma.PORTUGUES"/>
+    /// </summary>
     class ConstructorMensajePortugues : IConstructorMensaje
     {
         public string Area() => "Área";

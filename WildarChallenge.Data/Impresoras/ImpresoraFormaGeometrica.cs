@@ -7,9 +7,19 @@ using WildarChallenge.Data.FormasGeometricas;
 
 namespace WildarChallenge.Data.Impresoras
 {
+    /// <summary>
+    /// Acumula datos de las formas geometricas.
+    /// </summary>
     struct Acumulador
     {
+        /// <summary>
+        /// Área acumulada.
+        /// </summary>
         public decimal Area;
+
+        /// <summary>
+        /// Perímetro acumulado.
+        /// </summary>
         public decimal Perimetro;
 
         public Acumulador(decimal area, decimal perimetro)
@@ -19,6 +29,9 @@ namespace WildarChallenge.Data.Impresoras
         }
     }
 
+    /// <summary>
+    /// Impresora de formas geometricas.
+    /// </summary>
     public class ImpresoraFormaGeometrica
     {
         public IConstructorMensaje ConstructorMensaje { get; set; }
@@ -27,6 +40,11 @@ namespace WildarChallenge.Data.Impresoras
             this.ConstructorMensaje = constructorMensaje;
         }
 
+        /// <summary>
+        /// Imprime las formas geometricas.
+        /// </summary>
+        /// <param name="formasGeometricas">Formas geometricas a imprimir</param>
+        /// <returns>El string para impresión.</returns>
         public string Imprimir(ICollection<IFormaGeometrica> formasGeometricas)
         {
 
@@ -46,10 +64,7 @@ namespace WildarChallenge.Data.Impresoras
 
             foreach (var agrupadas in formasAgupadas)
             {
-                //Se filtran las formas obtenidas en base al tipo actual.
-                //IEnumerable<IFormaGeometrica> formasFiltradas = formasAgupadas.Where(forma => forma.Tipo == agrupadas.Key);
                 int cantidad = agrupadas.Count();
-
                 if (cantidad == 0)
                 {
                     continue;
@@ -68,6 +83,7 @@ namespace WildarChallenge.Data.Impresoras
                 area += acumulado.Area;
                 perimetro += acumulado.Perimetro;
 
+                //Se imprimen los totalizadores del tipo de forma geometrica actual.
                 bool plural = cantidad != 1;
                 sb.Append($"{cantidad} {this.ConstructorMensaje.NombreForma(agrupadas.Key, plural)}");
                 sb.Append($" | {this.ConstructorMensaje.Area()} {acumulado.Area:#.##}");
@@ -75,38 +91,7 @@ namespace WildarChallenge.Data.Impresoras
                 sb.Append(" <br/>");
             }
 
-            /*
-            foreach (TipoFormaGeometrica enumType in  Enum.GetValues(typeof(TipoFormaGeometrica)))
-            {
-                //Se filtran las formas obtenidas en base al tipo actual.
-                IEnumerable<IFormaGeometrica> formasFiltradas = formasGeometricas.Where(forma => forma.Tipo == enumType);
-                int cantidad = formasFiltradas.Count();
-
-                if (cantidad == 0)
-                {
-                    continue;
-                }
-
-                //Se acumula el area y el perimetro
-                Acumulador acumulado = formasFiltradas.Aggregate(
-                    new Acumulador(0m, 0m),
-                    (acum, forma) => new Acumulador(acum.Area + forma.CalcularArea(), acum.Perimetro + forma.CalcularPerimetro())
-                );
-
-                
-
-                //Se agrega lo calculado a los totalizadores
-                cantidadFormas += cantidad;
-                area += acumulado.Area;
-                perimetro += acumulado.Perimetro;
-
-                bool plural = cantidad != 1;
-                sb.Append($"{cantidad} {this.ConstructorMensaje.NombreForma(enumType, plural)}");
-                sb.Append($" | {this.ConstructorMensaje.Area()} {acumulado.Area:#.##}");
-                sb.Append($" | {this.ConstructorMensaje.Perimetro()} {acumulado.Perimetro:#.##}");
-                sb.Append(" <br/>");
-            }
-            */
+            //Se imprimen los totalizadores de todas las formas geometricas
             sb.Append($"{this.ConstructorMensaje.Total()}:<br/>");
             sb.Append($"{cantidadFormas} {this.ConstructorMensaje.Formas()} ");
             sb.Append($"{this.ConstructorMensaje.Perimetro()} {perimetro.ToString("#.##")} ");

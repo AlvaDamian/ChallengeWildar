@@ -1,5 +1,8 @@
 ﻿namespace WildarChallenge.Data.FormasGeometricas
 {
+    /// <summary>
+    /// Forma geometrica que representa a un trapecio.
+    /// </summary>
     class FormaGeometricaTrapecio : IFormaGeometrica
     {
         private readonly decimal _baseMenor;

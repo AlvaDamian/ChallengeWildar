@@ -2,7 +2,10 @@
 
 namespace WildarChallenge.Data.FormasGeometricas
 {
-    internal class FormaGeometricaCirculo : IFormaGeometrica
+    /// <summary>
+    /// Forma geometrica que representa a un circulo.
+    /// </summary>
+    class FormaGeometricaCirculo : IFormaGeometrica
     {
         private readonly decimal _radio;
 
